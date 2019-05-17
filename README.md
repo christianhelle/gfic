@@ -1,3 +1,5 @@
+[![Build Status](https://christianhelle.visualstudio.com/gfic/_apis/build/status/CI%20Build?branchName=master)](https://christianhelle.visualstudio.com/gfic/_build/latest?definitionId=20&branchName=master)
+
 # gfic
 A .NET Core command line image processor that I started for no other reason than to learn F#. 
 The tool will scan the present working directory for **.jpg** files and create monochrome copies of them in a sub folder called **grayscale**
