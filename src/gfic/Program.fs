@@ -7,9 +7,7 @@ open ImageProcessor
 [<EntryPoint>]
 let main argv =
     printfn "gfic image converter"
-    let imageFolder = "..\\..\\..\\..\\..\\images"
-    let imagePath = Path.Combine(Directory.GetCurrentDirectory(), imageFolder)
-    let files = Directory.GetFiles(imagePath, "*.jpg")
+    let files = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.jpg")
     printfn "Found %d file(s)" files.Length
     files
     |> Array.map Path.GetFullPath 
