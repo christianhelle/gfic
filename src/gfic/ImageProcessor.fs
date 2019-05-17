@@ -11,3 +11,4 @@ let convertToGrayScale file =
     let image = Image.Load(file)
     image.Mutate(fun x -> x.Grayscale() |> ignore)
     image.Save(output)
+    printfn "%s - Done!" output
