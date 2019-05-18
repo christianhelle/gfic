@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "gfic": {
+      "commandName": "Project",
+      "commandLineArgs": " --input .\\"
+    }
+  }
+}
