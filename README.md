@@ -10,5 +10,18 @@ The tool can be installed as a .NET Core global tool that you can call from the 
 dotnet tool install --global gfic
 ```
 
+### Usage
+```
+USAGE: gfic [--help] [--effect <path>] [--input <path>] [--output <path>] [--threads <path>]
+
+OPTIONS:
+
+    --effect, -e <path>   Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, all
+    --input, -i <path>    Specify a folder for source images
+    --output, -o <path>   Specify the output folder.
+    --threads, -m <path>  Specify the maximum degree of parallelism. Default is 1
+    --help                display this list of options.
+```
+
 ### Future
 I will add a bunch of CLI arguments for batch image processing operations like: resize, brigten, darken, and the ability to combine multiple images into a collage and apply effects to it
