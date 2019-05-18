@@ -2,21 +2,25 @@
 
 open Argu
 open System.IO
+open System.Linq
 
 type Options = {
-  InputDir : string
-  OutputDir : string
-  MaxDegreeOfParallelism : int
+    Effect : string
+    InputDir : string
+    OutputDir : string
+    MaxDegreeOfParallelism : int
 }
 
 module Options = 
-  let Empty = {
-    InputDir = ""
-    OutputDir = ".\output"
-    MaxDegreeOfParallelism = 1
-  }
+    let Empty = {
+        Effect = ""
+        InputDir = ""
+        OutputDir = ".\output"
+        MaxDegreeOfParallelism = 1
+    }
 
 type CLIArguments = 
+    | [<AltCommandLine("-e")>] Effect of path:string
     | [<AltCommandLine("-i")>] Input of path:string
     | [<AltCommandLine("-o")>] Output of path:string
     | [<AltCommandLine("-m")>] MaxDegreeOfParallelism of path:int
@@ -24,12 +28,14 @@ with
     interface IArgParserTemplate with
         member s.Usage =
             match s with
+            | Effect _ -> "Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, all"
             | Input _ -> "Specify a folder for source images"
             | Output _ -> "Specify the output folder."
-            | MaxDegreeOfParallelism _ -> "Specify the maximum degree of parallelism (Default is 1)"
+            | MaxDegreeOfParallelism _ -> "Specify the maximum degree of parallelism. Default is 1"
 
 let Validate = function
     | { InputDir = "" } -> "ERROR: missing parameter '--input'." |> Error
+    | { Effect = "" } -> "ERROR: missing parameter '--effect'." |> Error
     | o -> o |> Ok
 
 let GetPath dir =
@@ -42,6 +48,7 @@ let Parse progName args =
     let exiter = ProcessExiter () :> IExiter
     let parser = ArgumentParser.Create<CLIArguments>(progName, errorHandler = exiter)
     let rec loop o = function
+        | Effect u::t -> t |> loop { o with Effect = u }
         | Input u::t -> t |> loop { o with InputDir = Path.GetDirectoryName(u) }
         | Output u::t -> t |> loop { o with OutputDir = GetPath(u) }
         | MaxDegreeOfParallelism u::t -> t |> loop { o with MaxDegreeOfParallelism = u }
