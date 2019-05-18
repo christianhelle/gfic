@@ -5,7 +5,7 @@ open System.IO
 open SixLabors.ImageSharp
 open SixLabors.ImageSharp.Processing
 
-let convertToGrayScale (file, outputDir:string) =
+let ToGrayScale (file, outputDir:string) =
     let sw = Stopwatch.StartNew()
     let fi = FileInfo(file)
     let outputPath = Path.Combine(Directory.GetCurrentDirectory(), outputDir)
