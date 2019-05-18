@@ -2,7 +2,8 @@
 
 # gfic
 A .NET Core command line image processor that I started for no other reason than to learn F#. 
-The tool will scan the present working directory for image files and create monochrome copies of them in a sub folder called **grayscale**
+
+The tool will scan the specified input folder for image files, apply the specified effect (grayscale, blackwhite, lomograph, kodachrome, oilpaint, or all of them), then save them to the specified output folder. The tool has multi-threading support where you can specify the maximum degree of parallelism but will by default only run on a single thread
 
 ### Installation
 The tool can be installed as a .NET Core global tool that you can call from the shell / command line
@@ -49,6 +50,43 @@ gfic --input .\ --output .\output --effect oilpaint
 ```
 
 ![After](https://github.com/christianhelle/gfic/blob/master/images/oilpaint/guitar1.jpg)
+
+
+It's also possible to apply all supported effects by specifying **--effect all**
+
+```
+gfic --input .\input\ --output .\output --effect all
+
+00:00:00.1634858 - (grayscale) .\input\guitar1.jpg
+00:00:00.0664107 - (blackwhite) .\input\guitar1.jpg
+00:00:00.0845469 - (lomograph) .\input\guitar1.jpg
+00:00:00.0664452 - (kodachrome) .\input\guitar1.jpg
+00:00:00.1909609 - (oilpaint) .\input\guitar1.jpg
+00:00:00.0749696 - (grayscale) .\input\guitar2.jpg
+00:00:00.0741036 - (blackwhite) .\input\guitar2.jpg
+00:00:00.0815556 - (lomograph) .\input\guitar2.jpg
+00:00:00.0758306 - (kodachrome) .\input\guitar2.jpg
+00:00:00.0871689 - (oilpaint) .\input\guitar2.jpg
+
+Total time: 00:00:00.9850806
+
+```
+
+This will create sub folders under the specified output folder that describes the applied effect
+
+```
+ls .\output\
+
+    Directory: C:\test\images\output
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        5/19/2019   1:10 AM                blackwhite
+d-----        5/19/2019   1:10 AM                grayscale
+d-----        5/19/2019   1:10 AM                kodachrome
+d-----        5/19/2019   1:10 AM                lomograph
+d-----        5/19/2019   1:10 AM                oilpaint
+```
 
 
 ### Future
