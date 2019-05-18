@@ -23,5 +23,33 @@ OPTIONS:
     --help                display this list of options.
 ```
 
+### Examples
+Here's an example of how an original image might look like
+
+![Before](https://github.com/christianhelle/gfic/blob/master/images/original/guitar1.jpg)
+
+#### Then after applying some effects
+
+```
+gfic --input .\ --output .\output --effect grayscale
+```
+
+![After](https://github.com/christianhelle/gfic/blob/master/images/grayscale/guitar1.jpg)
+
+
+```
+gfic --input .\ --output .\output --effect lomograph
+```
+
+![After](https://github.com/christianhelle/gfic/blob/master/images/lomograph/guitar1.jpg)
+
+
+```
+gfic --input .\ --output .\output --effect oilpaint
+```
+
+![After](https://github.com/christianhelle/gfic/blob/master/images/oilpaint/guitar1.jpg)
+
+
 ### Future
 I will add a bunch of CLI arguments for batch image processing operations like: resize, brigten, darken, and the ability to combine multiple images into a collage and apply effects to it
