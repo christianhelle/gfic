@@ -10,6 +10,7 @@ The tool can be installed as a .NET Core global tool that you can call from the 
 ```
 dotnet tool install --global gfic
 ```
+or by following the instructions [here](https://www.nuget.org/packages/gfic) to install a specific version of tool
 
 ### Usage
 ```
