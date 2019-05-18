@@ -14,7 +14,7 @@ let main argv =
         Directory.GetFiles(options.InputDir, format)
         |> fun files -> 
             Parallel.ForEach(files, opt, fun file -> 
-                ImageProcessor.ToGrayScale(file, options.OutputDir)) 
+                ImageProcessor.Apply(file, options.OutputDir, options.Effect)) 
         |> ignore
     printfn "%sTotal time: %O%s" crlb sw.Elapsed crlb 
     0
