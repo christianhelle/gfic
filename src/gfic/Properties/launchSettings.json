@@ -2,7 +2,7 @@
   "profiles": {
     "gfic": {
       "commandName": "Project",
-      "commandLineArgs": " --input .\\"
+      "commandLineArgs": " --input .\\ --output .\\grayscale"
     }
   }
 }
