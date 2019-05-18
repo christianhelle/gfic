@@ -7,10 +7,12 @@ open ImageProcessor
 
 [<EntryPoint>]
 let main argv =
+    let options = CLIArguments.Parse "gfic" argv
     let sw = Stopwatch.StartNew()
     let crlb = Environment.NewLine
     for format in ["*.jpg"; "*.png"] do
-        let files = Directory.GetFiles(Directory.GetCurrentDirectory(), format)
-        Parallel.ForEach(files, fun file -> convertToGrayScale(file)) |> ignore
+        let files = Directory.GetFiles(options.InputDir, format)
+        Parallel.ForEach(files, fun file -> 
+            convertToGrayScale(file, options.OutputDir)) |> ignore
     printfn "%sTotal time: %O%s" crlb sw.Elapsed crlb 
-    0 // return an integer exit code
+    0
