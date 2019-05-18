@@ -10,7 +10,7 @@ let main argv =
     let crlb = Environment.NewLine
     for format in ["*.jpg"; "*.png"] do
         let opt = ParallelOptions()
-        opt.MaxDegreeOfParallelism <- options.MaxDegreeOfParallelism
+        opt.MaxDegreeOfParallelism <- options.Threads
         Directory.GetFiles(options.InputDir, format)
         |> fun files -> 
             Parallel.ForEach(files, opt, fun file -> 

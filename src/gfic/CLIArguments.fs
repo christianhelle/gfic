@@ -8,7 +8,7 @@ type Options = {
     Effect : string
     InputDir : string
     OutputDir : string
-    MaxDegreeOfParallelism : int
+    Threads : int
 }
 
 module Options = 
@@ -16,14 +16,14 @@ module Options =
         Effect = ""
         InputDir = ""
         OutputDir = ".\output"
-        MaxDegreeOfParallelism = 1
+        Threads = 1
     }
 
 type CLIArguments = 
     | [<AltCommandLine("-e")>] Effect of path:string
     | [<AltCommandLine("-i")>] Input of path:string
     | [<AltCommandLine("-o")>] Output of path:string
-    | [<AltCommandLine("-m")>] MaxDegreeOfParallelism of path:int
+    | [<AltCommandLine("-m")>] Threads of path:int
 with
     interface IArgParserTemplate with
         member s.Usage =
@@ -31,7 +31,7 @@ with
             | Effect _ -> "Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, all"
             | Input _ -> "Specify a folder for source images"
             | Output _ -> "Specify the output folder."
-            | MaxDegreeOfParallelism _ -> "Specify the maximum degree of parallelism. Default is 1"
+            | Threads _ -> "Specify the maximum degree of parallelism. Default is 1"
 
 let Validate = function
     | { InputDir = "" } -> "ERROR: missing parameter '--input'." |> Error
@@ -51,7 +51,7 @@ let Parse progName args =
         | Effect u::t -> t |> loop { o with Effect = u }
         | Input u::t -> t |> loop { o with InputDir = Path.GetDirectoryName(u) }
         | Output u::t -> t |> loop { o with OutputDir = GetPath(u) }
-        | MaxDegreeOfParallelism u::t -> t |> loop { o with MaxDegreeOfParallelism = u }
+        | Threads u::t -> t |> loop { o with Threads = u }
         | [] -> o
     parser.Parse args
     |> (fun a -> a.GetAllResults())
