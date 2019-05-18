@@ -1,7 +1,6 @@
 ﻿open System
 open System.Diagnostics
 open System.IO
-open System.Threading
 open System.Threading.Tasks
 
 [<EntryPoint>]
@@ -10,9 +9,11 @@ let main argv =
     let sw = Stopwatch.StartNew()
     let crlb = Environment.NewLine
     for format in ["*.jpg"; "*.png"] do
+        let opt = ParallelOptions()
+        opt.MaxDegreeOfParallelism <- options.MaxDegreeOfParallelism
         Directory.GetFiles(options.InputDir, format)
         |> fun files -> 
-            Parallel.ForEach(files, fun file -> 
+            Parallel.ForEach(files, opt, fun file -> 
                 ImageProcessor.ToGrayScale(file, options.OutputDir)) 
         |> ignore
     printfn "%sTotal time: %O%s" crlb sw.Elapsed crlb 
