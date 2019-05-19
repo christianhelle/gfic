@@ -21,6 +21,9 @@ module Options =
         Resize = 100
     }
 
+[<Literal>]
+let EffectsMessage = "Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, gaussianblur, gaussiansharpen, glow, invert, pixelate, polaroid, sepia, vignette, all"
+
 type CLIArguments = 
     | [<AltCommandLine("-e")>] Effect of path:string
     | [<AltCommandLine("-i")>] Input of path:string
@@ -31,7 +34,7 @@ with
     interface IArgParserTemplate with
         member s.Usage =
             match s with
-            | Effect _ -> "Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, all"
+            | Effect _ -> EffectsMessage
             | Input _ -> "Specify a folder for source images"
             | Output _ -> "Specify the output folder."
             | Threads _ -> "Specify the maximum degree of parallelism. Default is 1"
@@ -39,7 +42,6 @@ with
 
 let Validate = function
     | { InputDir = "" } -> "ERROR: missing parameter '--input'." |> Error
-    | { Effect = "" } -> "ERROR: missing parameter '--effect'." |> Error
     | o -> o |> Ok
 
 let GetPath dir =
