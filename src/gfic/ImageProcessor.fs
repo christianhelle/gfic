@@ -40,6 +40,7 @@ let Process (file:string, outputDir:string, effect:string, percentage:int) =
         | "pixelate" -> x.Pixelate() |> ignore
         | "polaroid" -> x.Polaroid() |> ignore
         | "sepia" -> x.Sepia() |> ignore
+        | "vignette" -> x.Vignette() |> ignore
         | _ -> printfn "No effect applied")
 
     GetOutputFile(file, outputDir) |> image.Save
@@ -60,6 +61,7 @@ let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
         "pixelate";
         "polaroid";
         "sepia";
+        "vignette"
     ]
     Parallel.ForEach(effects, popt, 
         fun e -> Process(file, Path.Combine(opt.OutputDir, e), e, opt.Resize)) 
