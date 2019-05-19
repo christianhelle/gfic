@@ -109,4 +109,4 @@ d-----        5/19/2019   1:10 AM                oilpaint
 
 
 ### Future
-I will add a bunch of CLI arguments for batch image processing operations like: resize, brigten, darken, and the ability to combine multiple images into a collage and apply effects to it
+I will add a bunch of CLI arguments for batch image processing operations like: brigten, darken, and the ability to combine multiple images into a collage and apply effects to it
