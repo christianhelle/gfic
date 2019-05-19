@@ -22,7 +22,7 @@ module Options =
     }
 
 [<Literal>]
-let EffectsMessage = "Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, all"
+let EffectsMessage = "Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, gaussianblur, all"
 
 type CLIArguments = 
     | [<AltCommandLine("-e")>] Effect of path:string
