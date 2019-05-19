@@ -37,6 +37,7 @@ let Process (file:string, outputDir:string, effect:string, percentage:int) =
         | "gaussiansharpen" -> x.GaussianSharpen() |> ignore
         | "glow" -> x.Glow() |> ignore
         | "invert" -> x.Invert() |> ignore
+        | "pixelate" -> x.Pixelate() |> ignore
         | _ -> printfn "No effect applied")
 
     GetOutputFile(file, outputDir) |> image.Save
@@ -54,6 +55,7 @@ let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
         "gaussiansharpen"; 
         "glow";
         "invert";
+        "pixelate";
     ]
     Parallel.ForEach(effects, popt, 
         fun e -> Process(file, Path.Combine(opt.OutputDir, e), e, opt.Resize)) 
