@@ -104,18 +104,36 @@ It's also possible to apply all supported effects by specifying **--effect all**
 ```
 gfic --input .\input\ --output .\output --effect all
 
-00:00:00.1634858 - (grayscale) .\input\guitar1.jpg
-00:00:00.0664107 - (blackwhite) .\input\guitar1.jpg
-00:00:00.0845469 - (lomograph) .\input\guitar1.jpg
-00:00:00.0664452 - (kodachrome) .\input\guitar1.jpg
-00:00:00.1909609 - (oilpaint) .\input\guitar1.jpg
-00:00:00.0749696 - (grayscale) .\input\guitar2.jpg
-00:00:00.0741036 - (blackwhite) .\input\guitar2.jpg
-00:00:00.0815556 - (lomograph) .\input\guitar2.jpg
-00:00:00.0758306 - (kodachrome) .\input\guitar2.jpg
-00:00:00.0871689 - (oilpaint) .\input\guitar2.jpg
+00:00:00.1495793 - (grayscale) .\images\guitar1.jpg
+00:00:00.0688985 - (blackwhite) .\images\guitar1.jpg
+00:00:00.0880889 - (lomograph) .\images\guitar1.jpg
+00:00:00.0662329 - (kodachrome) .\images\guitar1.jpg
+00:00:00.1943901 - (oilpaint) .\images\guitar1.jpg
+00:00:00.1257821 - (boxblur) .\images\guitar1.jpg
+00:00:00.1368524 - (gaussianblur) .\images\guitar1.jpg
+00:00:00.0871363 - (gaussiansharpen) .\images\guitar1.jpg
+00:00:00.0497155 - (glow) .\images\guitar1.jpg
+00:00:00.0476376 - (invert) .\images\guitar1.jpg
+00:00:00.0564792 - (pixelate) .\images\guitar1.jpg
+00:00:00.0675103 - (polaroid) .\images\guitar1.jpg
+00:00:00.0488536 - (sepia) .\images\guitar1.jpg
+00:00:00.0552082 - (vignette) .\images\guitar1.jpg
+00:00:00.0540388 - (grayscale) .\images\guitar2.jpg
+00:00:00.0526321 - (blackwhite) .\images\guitar2.jpg
+00:00:00.0533533 - (lomograph) .\images\guitar2.jpg
+00:00:00.0527740 - (kodachrome) .\images\guitar2.jpg
+00:00:00.1286677 - (oilpaint) .\images\guitar2.jpg
+00:00:00.0709969 - (boxblur) .\images\guitar2.jpg
+00:00:00.0743339 - (gaussianblur) .\images\guitar2.jpg
+00:00:00.0773348 - (gaussiansharpen) .\images\guitar2.jpg
+00:00:00.0597320 - (glow) .\images\guitar2.jpg
+00:00:00.0287875 - (invert) .\images\guitar2.jpg
+00:00:00.0150577 - (pixelate) .\images\guitar2.jpg
+00:00:00.0156321 - (polaroid) .\images\guitar2.jpg
+00:00:00.0128757 - (sepia) .\images\guitar2.jpg
+00:00:00.0203237 - (vignette) .\images\guitar2.jpg
 
-Total time: 00:00:00.9850806
+Total time: 00:00:01.9884109
 
 ```
 
@@ -128,11 +146,20 @@ ls .\output\
 
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
-d-----        5/19/2019   1:10 AM                blackwhite
-d-----        5/19/2019   1:10 AM                grayscale
-d-----        5/19/2019   1:10 AM                kodachrome
-d-----        5/19/2019   1:10 AM                lomograph
-d-----        5/19/2019   1:10 AM                oilpaint
+d-----        5/19/2019   2:19 PM                blackwhite
+d-----        5/19/2019   2:55 PM                boxblur
+d-----        5/19/2019   2:55 PM                gaussianblur
+d-----        5/19/2019   2:55 PM                gaussiansharpen
+d-----        5/19/2019   2:55 PM                glow
+d-----        5/19/2019   2:19 PM                grayscale
+d-----        5/19/2019   2:55 PM                invert
+d-----        5/19/2019   2:19 PM                kodachrome
+d-----        5/19/2019   2:19 PM                lomograph
+d-----        5/19/2019   2:19 PM                oilpaint
+d-----        5/19/2019   2:55 PM                pixelate
+d-----        5/19/2019   2:55 PM                polaroid
+d-----        5/19/2019   2:55 PM                sepia
+d-----        5/19/2019   2:55 PM                vignette
 ```
 
 
