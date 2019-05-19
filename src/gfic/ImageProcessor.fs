@@ -34,6 +34,7 @@ let Process (file:string, outputDir:string, effect:string, percentage:int) =
         | "oilpaint" -> x.OilPaint() |> ignore
         | "boxblur" -> x.BoxBlur() |> ignore
         | "gaussianblur" -> x.GaussianBlur() |> ignore
+        | "gaussiansharpen" -> x.GaussianSharpen() |> ignore
         | _ -> printfn "No effect applied")
 
     GetOutputFile(file, outputDir) |> image.Save
@@ -48,6 +49,7 @@ let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
         "oilpaint";
         "boxblur"; 
         "gaussianblur"; 
+        "gaussiansharpen"; 
     ]
     Parallel.ForEach(effects, popt, 
         fun e -> Process(file, Path.Combine(opt.OutputDir, e), e, opt.Resize)) 
