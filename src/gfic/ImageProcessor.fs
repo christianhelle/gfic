@@ -32,7 +32,8 @@ let Process (file:string, outputDir:string, effect:string, percentage:int) =
         | "lomograph" -> x.Lomograph() |> ignore
         | "kodachrome" -> x.Kodachrome() |> ignore
         | "oilpaint" -> x.OilPaint() |> ignore
-        | _ -> printfn "Unknown effect")
+        | "boxblur" -> x.BoxBlur() |> ignore
+        | _ -> printfn "No effect applied")
 
     GetOutputFile(file, outputDir) |> image.Save
     printfn "%O - (%s) %s" sw.Elapsed effect file
@@ -44,6 +45,7 @@ let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
         "lomograph"; 
         "kodachrome"; 
         "oilpaint";
+        "boxblur"; 
     ]
     Parallel.ForEach(effects, popt, 
         fun e -> Process(file, Path.Combine(opt.OutputDir, e), e, opt.Resize)) 
