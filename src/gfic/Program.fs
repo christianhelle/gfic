@@ -8,7 +8,7 @@ let main argv =
     let options = CLIArguments.Parse "gfic" argv
     let sw = Stopwatch.StartNew()
     let crlb = Environment.NewLine
-    for format in ["*.jpg"; "*.png"] do
+    for format in ["*.jpg"; "*.png"; "*.bmp"; "*.gif"] do
         let opt = ParallelOptions()
         opt.MaxDegreeOfParallelism <- options.Threads
         Directory.GetFiles(options.InputDir, format)
