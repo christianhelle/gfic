@@ -3,7 +3,23 @@
 # gfic
 A .NET Core command line image processor that I started for no other reason than to learn F#. 
 
-The tool will scan the specified input folder for image files, apply the specified effect (grayscale, blackwhite, lomograph, kodachrome, oilpaint, or all of them), then save them to the specified output folder. The tool has multi-threading support where you can specify the maximum degree of parallelism but will by default only run on a single thread
+The tool will scan the specified input folder for image files, resize the image by percentage if specified, apply the specified effect, and then save them to the specified output folder. The tool has multi-threading support where you can specify the maximum degree of parallelism but will by default only run on a single thread
+
+#### Supported effects
+- grayscale
+- blackwhite
+- lomograph
+- kodachrome
+- oilpaint
+- box blur 
+- gaussian blur 
+- gaussian sharpen 
+- glow
+- invert
+- pixelate
+- polaroid
+- sepia
+- vignette
 
 ### Installation
 The tool can be installed as a .NET Core global tool that you can call from the shell / command line
@@ -14,14 +30,16 @@ or by following the instructions [here](https://www.nuget.org/packages/gfic) to 
 
 ### Usage
 ```
-USAGE: gfic [--help] [--effect <path>] [--input <path>] [--output <path>] [--threads <path>]
+USAGE: gfic [--help] [--effect <path>] [--input <path>] [--output <path>] [--threads <path>] [--resize <path>]
 
 OPTIONS:
 
-    --effect, -e <path>   Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, all
+    --effect, -e <path>   Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, gaussianblur,
+                          gaussiansharpen, glow, invert, pixelate, polaroid, sepia, vignette, all
     --input, -i <path>    Specify a folder for source images
     --output, -o <path>   Specify the output folder.
     --threads, -m <path>  Specify the maximum degree of parallelism. Default is 1
+    --resize, -r <path>   Resize the image by percentage
     --help                display this list of options.
 ```
 
