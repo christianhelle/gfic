@@ -71,6 +71,34 @@ gfic --input .\ --output .\output --effect oilpaint
 ![After](https://github.com/christianhelle/gfic/blob/master/images/oilpaint/guitar1.jpg)
 
 
+```
+gfic --input .\ --output .\output --effect gaussiansharpen
+```
+
+![After](https://github.com/christianhelle/gfic/blob/master/images/gaussiansharpen/guitar1.jpg)
+
+
+```
+gfic --input .\ --output .\output --effect sepia
+```
+
+![After](https://github.com/christianhelle/gfic/blob/master/images/sepia/guitar1.jpg)
+
+
+```
+gfic --input .\ --output .\output --effect vignette
+```
+
+![After](https://github.com/christianhelle/gfic/blob/master/images/vignette/guitar1.jpg)
+
+
+```
+gfic --input .\ --output .\output --effect polaroid
+```
+
+![After](https://github.com/christianhelle/gfic/blob/master/images/polaroid/guitar1.jpg)
+
+
 It's also possible to apply all supported effects by specifying **--effect all**
 
 ```
