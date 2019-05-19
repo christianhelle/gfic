@@ -38,7 +38,13 @@ let Process (file:string, outputDir:string, effect:string, percentage:int) =
     printfn "%O - (%s) %s" sw.Elapsed effect file
 
 let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
-    let effects = ["grayscale"; "blackwhite"; "lomograph"; "kodachrome"; "oilpaint"]
+    let effects = [
+        "grayscale"; 
+        "blackwhite"; 
+        "lomograph"; 
+        "kodachrome"; 
+        "oilpaint";
+    ]
     Parallel.ForEach(effects, popt, 
         fun e -> Process(file, Path.Combine(opt.OutputDir, e), e, opt.Resize)) 
     |> ignore
