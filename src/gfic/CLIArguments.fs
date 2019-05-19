@@ -9,6 +9,7 @@ type Options = {
     InputDir : string
     OutputDir : string
     Threads : int
+    Resize : int
 }
 
 module Options = 
@@ -17,6 +18,7 @@ module Options =
         InputDir = ""
         OutputDir = ".\output"
         Threads = 1
+        Resize = 100
     }
 
 type CLIArguments = 
@@ -24,6 +26,7 @@ type CLIArguments =
     | [<AltCommandLine("-i")>] Input of path:string
     | [<AltCommandLine("-o")>] Output of path:string
     | [<AltCommandLine("-m")>] Threads of path:int
+    | [<AltCommandLine("-r")>] Resize of path:int
 with
     interface IArgParserTemplate with
         member s.Usage =
@@ -32,6 +35,7 @@ with
             | Input _ -> "Specify a folder for source images"
             | Output _ -> "Specify the output folder."
             | Threads _ -> "Specify the maximum degree of parallelism. Default is 1"
+            | Resize _ -> "Resize the image by percentage"
 
 let Validate = function
     | { InputDir = "" } -> "ERROR: missing parameter '--input'." |> Error
@@ -52,6 +56,7 @@ let Parse progName args =
         | Input u::t -> t |> loop { o with InputDir = Path.GetDirectoryName(u) }
         | Output u::t -> t |> loop { o with OutputDir = GetPath(u) }
         | Threads u::t -> t |> loop { o with Threads = u }
+        | Resize u::t -> t |> loop { o with Resize = u }
         | [] -> o
     parser.Parse args
     |> (fun a -> a.GetAllResults())
