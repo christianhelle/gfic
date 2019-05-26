@@ -25,11 +25,11 @@ module Options =
 let EffectsMessage = "Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, gaussianblur, gaussiansharpen, glow, invert, pixelate, polaroid, sepia, vignette, all"
 
 type CLIArguments = 
-    | [<AltCommandLine("-e")>] Effect of path:string
+    | [<AltCommandLine("-e")>] Effect of name:string
     | [<AltCommandLine("-i")>] Input of path:string
     | [<AltCommandLine("-o")>] Output of path:string
-    | [<AltCommandLine("-m")>] Threads of path:int
-    | [<AltCommandLine("-r")>] Resize of path:int
+    | [<AltCommandLine("-m")>] Threads of number:int
+    | [<AltCommandLine("-r")>] Resize of percentage:int
 with
     interface IArgParserTemplate with
         member s.Usage =
