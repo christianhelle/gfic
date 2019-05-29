@@ -21,7 +21,7 @@ let Resize (percentage:int, image:Image<PixelFormats.Rgba32>) =
             toDecimal(image.Height, percentage)) 
         |> ignore)
 
-let Process (file:string, outputDir:string, effect:string, percentage:int) =
+let Process (file:string, outputDir:string, effect:string, percentage:int, format:string) =
     let sw = Stopwatch.StartNew()
     use image = Image.Load(file)    
     if not (percentage = 100) then Resize(percentage, image)
@@ -43,7 +43,15 @@ let Process (file:string, outputDir:string, effect:string, percentage:int) =
         | "vignette" -> x.Vignette() |> ignore
         | _ -> printfn "No effect applied")
 
-    GetOutputFile(file, outputDir) |> image.Save
+    let ext = FileInfo(file).Extension
+    let outputFile = GetOutputFile(file, outputDir)
+    match format with 
+    | "jpg" -> image.Save(outputFile.Replace(ext, ".jpg"), Formats.Jpeg.JpegEncoder())
+    | "png" -> image.Save(outputFile.Replace(ext, ".png"), Formats.Png.PngEncoder())
+    | "bmp" -> image.Save(outputFile.Replace(ext, ".bmp"), Formats.Bmp.BmpEncoder())
+    | "gif" -> image.Save(outputFile.Replace(ext, ".gif"), Formats.Gif.GifEncoder())
+    | _ -> image.Save(outputFile)
+    
     printfn "%O - (%s) %s" sw.Elapsed effect file
 
 let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
@@ -64,10 +72,10 @@ let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
         "vignette"
     ]
     Parallel.ForEach(effects, popt, 
-        fun e -> Process(file, Path.Combine(opt.OutputDir, e), e, opt.Resize)) 
+        fun e -> Process(file, Path.Combine(opt.OutputDir, e), e, opt.Resize, opt.Format)) 
     |> ignore
 
 let Apply (file:string, opt:Options, popt:ParallelOptions) =
     match opt.Effect with
     | "all" -> ApplyAllEffects(file, opt, popt)
-    | _ -> Process(file, opt.OutputDir, opt.Effect, opt.Resize)
+    | _ -> Process(file, opt.OutputDir, opt.Effect, opt.Resize, opt.Format)
