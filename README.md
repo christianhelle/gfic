@@ -30,16 +30,19 @@ or by following the instructions [here](https://www.nuget.org/packages/gfic) to 
 
 ### Usage
 ```
-USAGE: gfic [--help] [--effect <path>] [--input <path>] [--output <path>] [--threads <path>] [--resize <path>]
+USAGE: gfic [--help] [--effect <name>] [--format <format>] [--input <path>] [--output <path>] [--threads <number>] [--resize <percentage>]
 
 OPTIONS:
 
-    --effect, -e <path>   Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, gaussianblur,
-                          gaussiansharpen, glow, invert, pixelate, polaroid, sepia, vignette, all
+    --effect, -e <name>   Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome,
+                          oilpaint, boxblur, gaussianblur, gaussiansharpen, glow, invert, pixelate, polaroid, sepia, vignette, all
+    --format, -f <format> File format (jpg, png, bmp, gif)
     --input, -i <path>    Specify a folder for source images
     --output, -o <path>   Specify the output folder.
-    --threads, -m <path>  Specify the maximum degree of parallelism. Default is 1
-    --resize, -r <path>   Resize the image by percentage
+    --threads, -m <number>
+                          Specify the maximum degree of parallelism. Default is 1
+    --resize, -r <percentage>
+                          Resize the image by percentage
     --help                display this list of options.
 ```
 

@@ -38,7 +38,7 @@ with
         member s.Usage =
             match s with
             | Effect _ -> EffectsMessage
-            | Format _ -> "File format (jpg, png, bmp, gif, tiff)"
+            | Format _ -> "File format (jpg, png, bmp, gif)"
             | Input _ -> "Specify a folder for source images"
             | Output _ -> "Specify the output folder."
             | Threads _ -> "Specify the maximum degree of parallelism. Default is 1"
