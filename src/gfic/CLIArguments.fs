@@ -6,6 +6,7 @@ open System.Linq
 
 type Options = {
     Effect : string
+    Format : string
     InputDir : string
     OutputDir : string
     Threads : int
@@ -15,6 +16,7 @@ type Options = {
 module Options = 
     let Empty = {
         Effect = ""
+        Format = ""
         InputDir = ""
         OutputDir = ".\output"
         Threads = 1
@@ -26,6 +28,7 @@ let EffectsMessage = "Specify the image processing effect. Available effects are
 
 type CLIArguments = 
     | [<AltCommandLine("-e")>] Effect of name:string
+    | [<AltCommandLine("-f")>] Format of format:string
     | [<AltCommandLine("-i")>] Input of path:string
     | [<AltCommandLine("-o")>] Output of path:string
     | [<AltCommandLine("-m")>] Threads of number:int
@@ -35,6 +38,7 @@ with
         member s.Usage =
             match s with
             | Effect _ -> EffectsMessage
+            | Format _ -> "File format (jpg, png, bmp, gif)"
             | Input _ -> "Specify a folder for source images"
             | Output _ -> "Specify the output folder."
             | Threads _ -> "Specify the maximum degree of parallelism. Default is 1"
@@ -55,6 +59,7 @@ let Parse progName args =
     let parser = ArgumentParser.Create<CLIArguments>(progName, errorHandler = exiter)
     let rec loop o = function
         | Effect u::t -> t |> loop { o with Effect = u }
+        | Format u::t -> t |> loop { o with Format = u }
         | Input u::t -> t |> loop { o with InputDir = Path.GetDirectoryName(u) }
         | Output u::t -> t |> loop { o with OutputDir = GetPath(u) }
         | Threads u::t -> t |> loop { o with Threads = u }

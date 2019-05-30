@@ -30,16 +30,19 @@ or by following the instructions [here](https://www.nuget.org/packages/gfic) to 
 
 ### Usage
 ```
-USAGE: gfic [--help] [--effect <path>] [--input <path>] [--output <path>] [--threads <path>] [--resize <path>]
+USAGE: gfic [--help] [--effect <name>] [--format <format>] [--input <path>] [--output <path>] [--threads <number>] [--resize <percentage>]
 
 OPTIONS:
 
-    --effect, -e <path>   Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, gaussianblur,
-                          gaussiansharpen, glow, invert, pixelate, polaroid, sepia, vignette, all
+    --effect, -e <name>   Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome,
+                          oilpaint, boxblur, gaussianblur, gaussiansharpen, glow, invert, pixelate, polaroid, sepia, vignette, all
+    --format, -f <format> File format (jpg, png, bmp, gif)
     --input, -i <path>    Specify a folder for source images
     --output, -o <path>   Specify the output folder.
-    --threads, -m <path>  Specify the maximum degree of parallelism. Default is 1
-    --resize, -r <path>   Resize the image by percentage
+    --threads, -m <number>
+                          Specify the maximum degree of parallelism. Default is 1
+    --resize, -r <percentage>
+                          Resize the image by percentage
     --help                display this list of options.
 ```
 
@@ -165,3 +168,5 @@ d-----        5/19/2019   2:55 PM                vignette
 
 ### Future
 I will add a bunch of CLI arguments for batch image processing operations like: brigten, darken, and the ability to combine multiple images into a collage and apply effects to it
+
+For tips and tricks on software development, check out [my blog](https://christian-helle.blogspot.com)
