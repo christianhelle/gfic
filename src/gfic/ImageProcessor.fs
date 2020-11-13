@@ -13,7 +13,7 @@ let GetOutputFile (input, output) =
     |> Directory.CreateDirectory
     |> fun dir -> Path.Combine(dir.FullName, FileInfo(input).Name)
 
-let Resize (percentage:int, image:Image<PixelFormats.Rgba32>) =
+let Resize (percentage:int, image:Image) =
     let toDecimal(value:int, percentage:int) = (value * percentage) / 100
     image.Mutate(fun x -> 
         x.Resize(
