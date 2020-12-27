@@ -4,7 +4,7 @@ open System.Diagnostics
 open System.IO
 open SixLabors.ImageSharp
 open SixLabors.ImageSharp.Processing
-
+open Exceptionless
 open CLIArguments
 open System.Threading.Tasks
 
@@ -14,6 +14,7 @@ let GetOutputFile (input, output) =
     |> fun dir -> Path.Combine(dir.FullName, FileInfo(input).Name)
 
 let Resize (percentage:int, image:Image) =
+    ExceptionlessClient.Default.CreateFeatureUsage("resize").Submit();
     let toDecimal(value:int, percentage:int) = (value * percentage) / 100
     image.Mutate(fun x -> 
         x.Resize(
@@ -23,7 +24,7 @@ let Resize (percentage:int, image:Image) =
 
 let Process (file:string, outputDir:string, effect:string, percentage:int, format:string) =
     let sw = Stopwatch.StartNew()
-    use image = Image.Load(file)    
+    use image = Image.Load(file)
     if not (percentage = 100) then Resize(percentage, image)
     image.Mutate(fun x ->
         match effect with
@@ -76,6 +77,7 @@ let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
     |> ignore
 
 let Apply (file:string, opt:Options, popt:ParallelOptions) =
+    ExceptionlessClient.Default.CreateFeatureUsage(opt.Effect).Submit();
     match opt.Effect with
     | "all" -> ApplyAllEffects(file, opt, popt)
     | _ -> Process(file, opt.OutputDir, opt.Effect, opt.Resize, opt.Format)
