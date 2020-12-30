@@ -90,9 +90,8 @@ let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
                     opt.Format))
     |> ignore
 
-let Apply (file:string, opt:Options, popt:ParallelOptions) =
+let Apply (file:string, opt:Options, popt:ParallelOptions, effect:MutateEffect) =
     ExceptionlessClient.Default.CreateFeatureUsage(opt.Effect).Submit()
-    let effect = Enum.Parse(typeof<MutateEffect>, opt.Effect, true) :?> MutateEffect
     match effect with
     | MutateEffect.All -> ApplyAllEffects(file, opt, popt)
     | _ -> Process(file, opt.OutputDir, effect, opt.Resize, opt.Format)
