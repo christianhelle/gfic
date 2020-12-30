@@ -2,7 +2,7 @@
   "profiles": {
     "gfic": {
       "commandName": "Project",
-      "commandLineArgs": " --input  ..\\..\\..\\..\\..\\images\\original\\ --output .\\output --effect all --threads 32"
+      "commandLineArgs": " --input  ..\\..\\..\\..\\..\\images\\original\\ --output .\\output --effect all"
     }
   }
 }
