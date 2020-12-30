@@ -1,12 +1,31 @@
 ﻿module ImageProcessor
 
+open System
 open System.Diagnostics
 open System.IO
+open System.Threading.Tasks
 open SixLabors.ImageSharp
 open SixLabors.ImageSharp.Processing
 open Exceptionless
+
 open CLIArguments
-open System.Threading.Tasks
+
+type MutateEffect = 
+    All = 0
+    | Grayscale = 1
+    | Blackwhite = 2
+    | Lomograph = 3
+    | Kodachrome = 4
+    | Oilpaint = 5
+    | Boxblur = 6
+    | Gaussianblur = 7
+    | Gaussiansharpen = 8
+    | Glow = 9
+    | Invert = 10
+    | Pixelate = 11
+    | Polaroid = 12
+    | Sepia = 13
+    | Vignette =14
 
 let GetOutputFile (input, output) =
     Path.Combine(Directory.GetCurrentDirectory(), output)
@@ -22,27 +41,27 @@ let Resize (percentage:int, image:Image) =
             toDecimal(image.Height, percentage)) 
         |> ignore)
 
-let Process (file:string, outputDir:string, effect:string, percentage:int, format:string) =
+let Process (file:string, outputDir:string, effect:MutateEffect, percentage:int, format:string) =
     let sw = Stopwatch.StartNew()
     use image = Image.Load(file)
     if not (percentage = 100) then Resize(percentage, image)
     image.Mutate(fun x ->
         match effect with
-        | "grayscale" -> x.Grayscale() |> ignore
-        | "blackwhite" -> x.BlackWhite() |> ignore
-        | "lomograph" -> x.Lomograph() |> ignore
-        | "kodachrome" -> x.Kodachrome() |> ignore
-        | "oilpaint" -> x.OilPaint() |> ignore
-        | "boxblur" -> x.BoxBlur() |> ignore
-        | "gaussianblur" -> x.GaussianBlur() |> ignore
-        | "gaussiansharpen" -> x.GaussianSharpen() |> ignore
-        | "glow" -> x.Glow() |> ignore
-        | "invert" -> x.Invert() |> ignore
-        | "pixelate" -> x.Pixelate() |> ignore
-        | "polaroid" -> x.Polaroid() |> ignore
-        | "sepia" -> x.Sepia() |> ignore
-        | "vignette" -> x.Vignette() |> ignore
-        | _ -> printfn "No effect applied")
+        | MutateEffect.Grayscale -> x.Grayscale() |> ignore
+        | MutateEffect.Blackwhite -> x.BlackWhite() |> ignore
+        | MutateEffect.Lomograph -> x.Lomograph() |> ignore
+        | MutateEffect.Kodachrome -> x.Kodachrome() |> ignore
+        | MutateEffect.Oilpaint -> x.OilPaint() |> ignore
+        | MutateEffect.Boxblur -> x.BoxBlur() |> ignore
+        | MutateEffect.Gaussianblur -> x.GaussianBlur() |> ignore
+        | MutateEffect.Gaussiansharpen -> x.GaussianSharpen() |> ignore
+        | MutateEffect.Glow -> x.Glow() |> ignore
+        | MutateEffect.Invert -> x.Invert() |> ignore
+        | MutateEffect.Pixelate -> x.Pixelate() |> ignore
+        | MutateEffect.Polaroid -> x.Polaroid() |> ignore
+        | MutateEffect.Sepia -> x.Sepia() |> ignore
+        | MutateEffect.Vignette -> x.Vignette() |> ignore
+        | _ -> ())
 
     let ext = FileInfo(file).Extension
     let outputFile = GetOutputFile(file, outputDir)
@@ -53,31 +72,27 @@ let Process (file:string, outputDir:string, effect:string, percentage:int, forma
     | "gif" -> image.Save(outputFile.Replace(ext, ".gif"), Formats.Gif.GifEncoder())
     | _ -> image.Save(outputFile)
     
-    printfn "%O - (%s) %s" sw.Elapsed effect file
+    let e = effect.ToString()
+    printfn "%O - (%s) %s" sw.Elapsed e file
 
 let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
-    let effects = [
-        "grayscale"; 
-        "blackwhite"; 
-        "lomograph"; 
-        "kodachrome"; 
-        "oilpaint";
-        "boxblur"; 
-        "gaussianblur"; 
-        "gaussiansharpen"; 
-        "glow";
-        "invert";
-        "pixelate";
-        "polaroid";
-        "sepia";
-        "vignette"
-    ]
-    Parallel.ForEach(effects, popt, 
-        fun e -> Process(file, Path.Combine(opt.OutputDir, e), e, opt.Resize, opt.Format)) 
+    Enum.GetValues(typeof<MutateEffect>) :?> (MutateEffect[])
+    |> fun effects ->
+        Parallel.ForEach(
+            effects, 
+            popt,
+            fun effect ->
+                Process(
+                    file,
+                    Path.Combine(opt.OutputDir, effect.ToString()), 
+                    effect,
+                    opt.Resize,
+                    opt.Format))
     |> ignore
 
 let Apply (file:string, opt:Options, popt:ParallelOptions) =
-    ExceptionlessClient.Default.CreateFeatureUsage(opt.Effect).Submit();
-    match opt.Effect with
-    | "all" -> ApplyAllEffects(file, opt, popt)
-    | _ -> Process(file, opt.OutputDir, opt.Effect, opt.Resize, opt.Format)
+    ExceptionlessClient.Default.CreateFeatureUsage(opt.Effect).Submit()
+    let effect = Enum.Parse(typeof<MutateEffect>, opt.Effect, true) :?> MutateEffect
+    match effect with
+    | MutateEffect.All -> ApplyAllEffects(file, opt, popt)
+    | _ -> Process(file, opt.OutputDir, effect, opt.Resize, opt.Format)
