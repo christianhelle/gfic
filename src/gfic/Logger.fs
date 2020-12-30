@@ -7,7 +7,7 @@ open System.Security.Cryptography
 
 let GetUserIdentity =
     try Environment.UserName + "@" + Environment.MachineName
-    with | ex -> Environment.UserName + "@localhost"
+    with | _ex -> Environment.UserName + "@localhost"
 
 let GetAnonymousIdentity =
     let sb = new StringBuilder()
