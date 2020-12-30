@@ -1,7 +1,6 @@
 ﻿open System
 open System.Diagnostics
 open System.IO
-open System.Text
 open System.Threading.Tasks
 
 [<EntryPoint>]

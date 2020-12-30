@@ -2,7 +2,6 @@
 
 open Argu
 open System.IO
-open System.Linq
 
 type Options = {
     Effect : string
