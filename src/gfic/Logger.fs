@@ -1,10 +1,7 @@
 module Logger
 
 open System
-open System.Diagnostics
-open System.IO
 open System.Text
-open System.Threading.Tasks
 open Exceptionless
 open System.Security.Cryptography
 
@@ -15,9 +12,9 @@ let GetUserIdentity =
 let GetAnonymousIdentity =
     let sb = new StringBuilder()
     GetUserIdentity
-        |> Encoding.UTF8.GetBytes
-        |> (new SHA256Managed()).ComputeHash
-        |> fun hash -> for b in hash do sb.Append(b.ToString("x2")) |> ignore
+    |> Encoding.UTF8.GetBytes
+    |> (new SHA256Managed()).ComputeHash
+    |> fun hash -> for b in hash do sb.Append(b.ToString("x2")) |> ignore
     sb.ToString()
 
 let Setup =
