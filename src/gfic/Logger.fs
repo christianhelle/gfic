@@ -21,3 +21,5 @@ let Setup =
     GetAnonymousIdentity |> fun sha -> ExceptionlessClient.Default.Configuration.SetUserIdentity(sha, sha.Substring(0,7))
     ExceptionlessClient.Default.Configuration.UseSessions()
     ExceptionlessClient.Default.Startup("4f8WTcyL2cDDRJ90a6khQ1CIGv1lee2WfS3M8JsJ")
+
+let OptOut = ExceptionlessClient.Default.Shutdown()
