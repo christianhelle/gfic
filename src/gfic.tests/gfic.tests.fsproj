@@ -11,6 +11,7 @@
     <EmbeddedResource Include="Resources\guitar1.jpg" />
     <EmbeddedResource Include="Resources\guitar2.jpg" />
     <Compile Include="Resources\EmbeddedResource.fs" />
+    <Compile Include="ImageProcessorTests.fs" />
     <Compile Include="EmptyOptionsTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
