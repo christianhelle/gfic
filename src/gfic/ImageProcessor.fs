@@ -35,11 +35,11 @@ let GetOutputFile (input, output) =
 
 let Resize (percentage:int, image:Image) =
     ExceptionlessClient.Default.CreateFeatureUsage("resize").Submit();
-    let toDecimal(value:int, percentage:int) = (value * percentage) / 100
+    let ToDecimal(value:int, percentage:int) = (value * percentage) / 100
     image.Mutate(fun x -> 
         x.Resize(
-            toDecimal(image.Width, percentage), 
-            toDecimal(image.Height, percentage)) 
+            ToDecimal(image.Width, percentage), 
+            ToDecimal(image.Height, percentage)) 
         |> ignore)
 
 let Process (file:string, outputDir:string, effect:MutateEffect, percentage:int, format:string) =
