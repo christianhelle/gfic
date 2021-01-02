@@ -42,6 +42,16 @@ let Resize (percentage:int, image:Image) =
             ToDecimal(image.Height, percentage)) 
         |> ignore)
 
+let Save (file:string, image:Image, outputDir:string, format:string) =
+    let ext = FileInfo(file).Extension
+    let outputFile = GetOutputFile(file, outputDir)
+    match format with 
+    | "jpg" -> image.Save(outputFile.Replace(ext, ".jpg"), Formats.Jpeg.JpegEncoder())
+    | "png" -> image.Save(outputFile.Replace(ext, ".png"), Formats.Png.PngEncoder())
+    | "bmp" -> image.Save(outputFile.Replace(ext, ".bmp"), Formats.Bmp.BmpEncoder())
+    | "gif" -> image.Save(outputFile.Replace(ext, ".gif"), Formats.Gif.GifEncoder())
+    | _ -> image.Save(outputFile)
+
 let Process (file:string, outputDir:string, effect:MutateEffect, percentage:int, format:string) =
     let sw = Stopwatch.StartNew()
     use image = Image.Load(file)
@@ -64,14 +74,8 @@ let Process (file:string, outputDir:string, effect:MutateEffect, percentage:int,
         | MutateEffect.Vignette -> x.Vignette() |> ignore
         | _ -> ())
 
-    let ext = FileInfo(file).Extension
-    let outputFile = GetOutputFile(file, outputDir)
-    match format with 
-    | "jpg" -> image.Save(outputFile.Replace(ext, ".jpg"), Formats.Jpeg.JpegEncoder())
-    | "png" -> image.Save(outputFile.Replace(ext, ".png"), Formats.Png.PngEncoder())
-    | "bmp" -> image.Save(outputFile.Replace(ext, ".bmp"), Formats.Bmp.BmpEncoder())
-    | "gif" -> image.Save(outputFile.Replace(ext, ".gif"), Formats.Gif.GifEncoder())
-    | _ -> image.Save(outputFile)
+    if (effect <> MutateEffect.All && effect <> MutateEffect.None) 
+    then Save(file, image, outputDir, format)
     
     let e = effect.ToString()
     printfn "%O - (%s) %s" sw.Elapsed e file
