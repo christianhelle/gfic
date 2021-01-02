@@ -9,9 +9,10 @@ open SixLabors.ImageSharp.Processing
 open Exceptionless
 
 open CLIArguments
+open Options
 
 type MutateEffect = 
-    All = 0
+    None = 0
     | Grayscale = 1
     | Blackwhite = 2
     | Lomograph = 3
@@ -26,6 +27,7 @@ type MutateEffect =
     | Polaroid = 12
     | Sepia = 13
     | Vignette =14
+    | All = 15
 
 let GetOutputFile (input, output) =
     Path.Combine(Directory.GetCurrentDirectory(), output)
