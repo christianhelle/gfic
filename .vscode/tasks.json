@@ -20,7 +20,7 @@
             },
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "src/gfic"
+                "cwd": "src"
             }
         }
     ]
