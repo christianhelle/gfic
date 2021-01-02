@@ -3,7 +3,7 @@ open System.Diagnostics
 open System.IO
 open System.Threading.Tasks
 
-open Extensions.FsExtensions
+open Extensions.EnumExtensions
 
 [<EntryPoint>]
 let main argv =
