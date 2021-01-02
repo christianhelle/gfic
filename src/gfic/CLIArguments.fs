@@ -1,29 +1,15 @@
 ﻿module CLIArguments
 
 open Argu
+open Options
 open System.IO
 
-type Options = {
-    Effect : string
-    Format : string
-    InputDir : string
-    OutputDir : string
-    Threads : int
-    Resize : int
-}
-
-module Options = 
-    let Empty = {
-        Effect = ""
-        Format = ""
-        InputDir = ""
-        OutputDir = ".\output"
-        Threads = 1
-        Resize = 100
-    }
-
 [<Literal>]
-let EffectsMessage = "Specify the image processing effect. Available effects are grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, gaussianblur, gaussiansharpen, glow, invert, pixelate, polaroid, sepia, vignette, all"
+let EffectsMessage = @"Specify the image processing effect. 
+Available effects are: 
+grayscale, blackwhite, lomograph, kodachrome, oilpaint, boxblur, 
+gaussianblur, gaussiansharpen, glow, invert, pixelate, polaroid, 
+sepia, vignette, all"
 
 type CLIArguments = 
     | [<AltCommandLine("-e")>] Effect of name:string
