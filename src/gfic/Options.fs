@@ -1,5 +1,7 @@
 ﻿module Options
 
+open System.IO
+
 type Options = {
     Effect : string
     Format : string
@@ -15,7 +17,7 @@ module Options =
         Effect = ""
         Format = ""
         InputDir = ""
-        OutputDir = ".\output"
+        OutputDir = "." + Path.DirectorySeparatorChar.ToString() + "output"
         Threads = 1
         Resize = 100
         NoLogging = false
