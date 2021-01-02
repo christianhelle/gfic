@@ -8,7 +8,6 @@ open SixLabors.ImageSharp
 open SixLabors.ImageSharp.Processing
 open Exceptionless
 
-open CLIArguments
 open Options
 
 type MutateEffect = 
