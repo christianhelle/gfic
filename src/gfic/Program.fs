@@ -7,9 +7,10 @@ open Extensions.FsExtensions
 
 [<EntryPoint>]
 let main argv =
-    Logger.Setup    
+    Logger.Setup
     let sw = Stopwatch.StartNew()
     let options = CLIArguments.Parse "gfic" argv
+    if (options.NoLogging) then Logger.OptOut
     options.Effect.ToEnum<ImageProcessor.MutateEffect>()
     |> fun enum -> 
         match enum with

@@ -18,6 +18,7 @@ type CLIArguments =
     | [<AltCommandLine("-o")>] Output of path:string
     | [<AltCommandLine("-m")>] Threads of number:int
     | [<AltCommandLine("-r")>] Resize of percentage:int
+    | No_Logging
 with
     interface IArgParserTemplate with
         member s.Usage =
@@ -28,6 +29,7 @@ with
             | Output _ -> "Specify the output folder."
             | Threads _ -> "Specify the maximum degree of parallelism. Default is 1"
             | Resize _ -> "Resize the image by percentage"
+            | No_Logging _ -> "Disable remote logging and crash reporting"
 
 let Validate = function
     | { InputDir = "" } -> "ERROR: missing parameter '--input'." |> Error
@@ -45,13 +47,14 @@ let Parse progName args =
     let rec loop o = function
         | Effect u::t -> t |> loop { o with Effect = u }
         | Format u::t -> t |> loop { o with Format = u }
-        | Input u::t -> t |> loop { o with InputDir = Path.GetDirectoryName(u) }
-        | Output u::t -> t |> loop { o with OutputDir = GetPath(u) }
+        | Input u::t -> t |> loop { o with InputDir = Path.GetDirectoryName u }
+        | Output u::t -> t |> loop { o with OutputDir = GetPath u }
         | Threads u::t -> t |> loop { o with Threads = u }
         | Resize u::t -> t |> loop { o with Resize = u }
+        | No_Logging ::t -> t |> loop { o with NoLogging = true }
         | [] -> o
     parser.Parse args
-    |> (fun a -> a.GetAllResults())
+    |> fun a -> a.GetAllResults()
     |> loop Options.Empty
     |> Validate
     |> function

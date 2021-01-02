@@ -2,7 +2,7 @@
   "profiles": {
     "gfic": {
       "commandName": "Project",
-      "commandLineArgs": " --input  ..\\..\\..\\..\\..\\images\\original\\ --output .\\output --effect all"
+      "commandLineArgs": " --input  ..\\..\\..\\..\\..\\images\\original\\ --output .\\output --effect all --no-logging"
     }
   }
 }
