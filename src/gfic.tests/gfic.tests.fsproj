@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\guitar1.jpg" />
+    <EmbeddedResource Include="Resources\guitar2.jpg" />
+    <Compile Include="Resources\EmbeddedResource.fs" />
     <Compile Include="EmptyOptionsTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
