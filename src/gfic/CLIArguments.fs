@@ -41,9 +41,9 @@ let GetPath dir =
     |> Directory.CreateDirectory
     |> fun d -> d.FullName
 
-let Parse progName args = 
+let Parse args = 
     let exiter = ProcessExiter () :> IExiter
-    let parser = ArgumentParser.Create<CLIArguments>(progName, errorHandler = exiter)
+    let parser = ArgumentParser.Create<CLIArguments>("gfic", errorHandler = exiter)
     let rec loop o = function
         | Effect u::t -> t |> loop { o with Effect = u }
         | Format u::t -> t |> loop { o with Format = u }

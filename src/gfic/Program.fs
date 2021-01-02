@@ -9,7 +9,7 @@ open Extensions.EnumExtensions
 let main argv =
     Logger.Setup
     let sw = Stopwatch.StartNew()
-    let options = CLIArguments.Parse "gfic" argv
+    let options = CLIArguments.Parse argv
     if (options.NoLogging) then Logger.OptOut
     options.Effect.ToEnum<ImageProcessor.MutateEffect>()
     |> fun enum -> 
