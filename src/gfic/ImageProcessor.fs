@@ -99,4 +99,10 @@ let Apply (file:string, opt:Options, popt:ParallelOptions, effect:MutateEffect) 
     ExceptionlessClient.Default.CreateFeatureUsage(opt.Effect).Submit()
     match effect with
     | MutateEffect.All -> ApplyAllEffects(file, opt, popt)
-    | _ -> Process(file, opt.OutputDir, effect, opt.Resize, opt.Format)
+    | _ -> 
+        Process(
+            file,
+            Path.Combine(opt.OutputDir, effect.ToString()),
+            effect,
+            opt.Resize,
+            opt.Format)
