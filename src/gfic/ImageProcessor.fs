@@ -28,34 +28,10 @@ type MutateEffect =
     | Vignette =14
     | All = 15
 
-let GetOutputFile (input, output) =
-    Path.Combine(Directory.GetCurrentDirectory(), output)
-    |> Directory.CreateDirectory
-    |> fun dir -> Path.Combine(dir.FullName, FileInfo(input).Name)
-
-let Resize (percentage:int, image:Image) =
-    ExceptionlessClient.Default.CreateFeatureUsage("resize").Submit();
-    let ToDecimal(value:int, percentage:int) = (value * percentage) / 100
-    image.Mutate(fun x -> 
-        x.Resize(
-            ToDecimal(image.Width, percentage), 
-            ToDecimal(image.Height, percentage)) 
-        |> ignore)
-
-let Save (file:string, image:Image, outputDir:string, format:string) =
-    let ext = FileInfo(file).Extension
-    let outputFile = GetOutputFile(file, outputDir)
-    match format with 
-    | "jpg" -> image.Save(outputFile.Replace(ext, ".jpg"), Formats.Jpeg.JpegEncoder())
-    | "png" -> image.Save(outputFile.Replace(ext, ".png"), Formats.Png.PngEncoder())
-    | "bmp" -> image.Save(outputFile.Replace(ext, ".bmp"), Formats.Bmp.BmpEncoder())
-    | "gif" -> image.Save(outputFile.Replace(ext, ".gif"), Formats.Gif.GifEncoder())
-    | _ -> image.Save(outputFile)
-
 let Process (file:string, outputDir:string, effect:MutateEffect, percentage:int, format:string) =
     let sw = Stopwatch.StartNew()
     use image = Image.Load(file)
-    if not (percentage = 100) then Resize(percentage, image)
+    if not (percentage = 100) then ImageResizer.Resize(percentage, image)
     image.Mutate(fun x ->
         match effect with
         | MutateEffect.Grayscale -> x.Grayscale() |> ignore
@@ -73,10 +49,8 @@ let Process (file:string, outputDir:string, effect:MutateEffect, percentage:int,
         | MutateEffect.Sepia -> x.Sepia() |> ignore
         | MutateEffect.Vignette -> x.Vignette() |> ignore
         | _ -> ())
-
     if (effect <> MutateEffect.All && effect <> MutateEffect.None) 
-    then Save(file, image, outputDir, format)
-    
+    then ImageConverter.Save(file, image, outputDir, format)    
     let e = effect.ToString()
     printfn "%O - (%s) %s" sw.Elapsed e file
 

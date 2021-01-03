@@ -24,6 +24,8 @@
     <Compile Include="Options.fs" />
     <Compile Include="Extensions.fs" />
     <Compile Include="CLIArguments.fs" />
+    <Compile Include="ImageResizer.fs" />
+    <Compile Include="ImageConverter.fs" />
     <Compile Include="ImageProcessor.fs" />
     <Compile Include="Logger.fs" />
     <Compile Include="Program.fs" />
