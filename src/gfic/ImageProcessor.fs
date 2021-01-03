@@ -51,8 +51,7 @@ let Process (file:string, outputDir:string, effect:MutateEffect, percentage:int,
         | _ -> ())
     if (effect <> MutateEffect.All && effect <> MutateEffect.None) 
     then ImageConverter.Save(file, image, outputDir, format)    
-    let e = effect.ToString()
-    printfn "%O - (%s) %s" sw.Elapsed e file
+    effect.ToString() |> fun e -> printfn "%O - (%s) %s" sw.Elapsed e file
 
 let ApplyAllEffects (file:string, opt:Options, popt:ParallelOptions) =
     Enum.GetValues(typeof<MutateEffect>) :?> (MutateEffect[])

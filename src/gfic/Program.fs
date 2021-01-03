@@ -9,21 +9,21 @@ open Extensions.EnumExtensions
 let main argv =
     Logger.Setup
     let sw = Stopwatch.StartNew()
-    let options = CLIArguments.Parse argv
-    if (options.NoLogging) then Logger.OptOut
-    options.Effect.ToEnum<ImageProcessor.MutateEffect>()
+    let opt = CLIArguments.Parse argv
+    if (opt.NoLogging) then Logger.OptOut
+    let popt = ParallelOptions()
+    popt.MaxDegreeOfParallelism <- opt.Threads
+    opt.Effect.ToEnum<ImageProcessor.MutateEffect>()
     |> fun enum -> 
         match enum with
         | Some effect -> 
             for format in ["*.jpg"; "*.png"; "*.bmp"; "*.gif"] do
-                let opt = ParallelOptions()
-                opt.MaxDegreeOfParallelism <- options.Threads
-                Directory.GetFiles(options.InputDir, format)
+                Directory.GetFiles(opt.InputDir, format)
                 |> fun files ->
                     Parallel.ForEach(
                         files, 
-                        opt, 
-                        fun file -> ImageProcessor.Apply(file, options, opt, effect)) 
+                        popt, 
+                        fun file -> ImageProcessor.Apply(file, opt, popt, effect)) 
                 |> ignore
             let crlb = Environment.NewLine
             printfn "%sTotal time: %O%s" crlb sw.Elapsed crlb
