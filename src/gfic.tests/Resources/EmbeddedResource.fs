@@ -18,5 +18,6 @@ let ExtractAll =
                 new MemoryStream() 
                     |> fun mem -> src.CopyTo(mem) |> mem.ToArray
                     |> writer.Write
+                    |> writer.Flush
                     |> writer.Dispose
                     |> ignore
