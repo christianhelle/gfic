@@ -16,3 +16,6 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release
       working-directory: src
+    - name: Test with dotnet
+      run: dotnet test --configuration Release
+      working-directory: src
