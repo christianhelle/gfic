@@ -22,4 +22,6 @@ let Setup =
     ExceptionlessClient.Default.Configuration.UseSessions()
     ExceptionlessClient.Default.Startup("4f8WTcyL2cDDRJ90a6khQ1CIGv1lee2WfS3M8JsJ")
 
-let OptOut = ExceptionlessClient.Default.Shutdown()
+let OptOut =
+    ExceptionlessClient.Default.Configuration.Enabled <- false
+    ExceptionlessClient.Default.Shutdown()

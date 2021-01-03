@@ -13,6 +13,7 @@
     <Compile Include="Resources\EmbeddedResource.fs" />
     <Compile Include="ImageProcessorTests.fs" />
     <Compile Include="EmptyOptionsTests.fs" />
+    <Compile Include="LoggerTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
