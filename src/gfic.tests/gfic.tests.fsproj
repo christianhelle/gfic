@@ -14,6 +14,7 @@
     <Compile Include="CLIArgumentsTests.fs" />
     <Compile Include="ImageProcessorTests.fs" />
     <Compile Include="ImageResizerTests.fs" />
+    <Compile Include="ImageConverterTests.fs" />
     <Compile Include="EmptyOptionsTests.fs" />
     <Compile Include="LoggerTests.fs" />
     <Compile Include="Program.fs" />
