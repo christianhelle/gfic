@@ -13,18 +13,18 @@ let ``GetAnonymousIdentity returns not null`` () =
 
 [<Fact>]
 let ``Logging uses sessions`` () =
-    Logger.Setup
+    Logger.Setup()
     ExceptionlessClient.Default.Configuration.SessionsEnabled
     |> Assert.True
     
 [<Fact>]
 let ``Logging include username`` () =
-    Logger.Setup
+    Logger.Setup()
     ExceptionlessClient.Default.Configuration.IncludeUserName
     |> Assert.True
     
 [<Fact>]
 let ``Shutdown disables logging`` () =
-    Logger.OptOut
+    Logger.OptOut()
     ExceptionlessClient.Default.Configuration.Enabled
     |> Assert.False
