@@ -7,3 +7,4 @@ install:
 
 script:
   - dotnet build src/gfic.sln
+  - dotnet test src/gfic.sln
