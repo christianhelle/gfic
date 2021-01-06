@@ -17,11 +17,11 @@ let GetAnonymousIdentity =
     |> fun hash -> for b in hash do sb.Append(b.ToString("x2")) |> ignore
     sb.ToString()
 
-let Setup =
+let Setup() =
     GetAnonymousIdentity |> fun sha -> ExceptionlessClient.Default.Configuration.SetUserIdentity(sha, sha.Substring(0,7))
     ExceptionlessClient.Default.Configuration.UseSessions()
     ExceptionlessClient.Default.Startup("4f8WTcyL2cDDRJ90a6khQ1CIGv1lee2WfS3M8JsJ")
 
-let OptOut =
+let OptOut() =
     ExceptionlessClient.Default.Configuration.Enabled <- false
     ExceptionlessClient.Default.Shutdown()

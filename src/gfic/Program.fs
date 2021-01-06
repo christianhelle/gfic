@@ -7,10 +7,10 @@ open Extensions.EnumExtensions
 
 [<EntryPoint>]
 let main argv =
-    Logger.Setup
+    Logger.Setup()
     let sw = Stopwatch.StartNew()
     let opt = CLIArguments.Parse argv
-    if (opt.NoLogging) then Logger.OptOut
+    if (opt.NoLogging) then Logger.OptOut()
     let popt = ParallelOptions()
     popt.MaxDegreeOfParallelism <- opt.Threads
     opt.Effect.ToEnum<ImageProcessor.MutateEffect>()
