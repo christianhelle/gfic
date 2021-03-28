@@ -37,7 +37,7 @@ jobs:
       with:
         dotnet-version: 2.1
 
-    - name: Install rapicgen
+    - name: Install gfic
       run: dotnet tool install --global gfic
 
     - name: Run with dotnet
