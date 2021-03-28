@@ -8,11 +8,6 @@ pool:
 
 steps:
 
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '2.1.*'
-
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
