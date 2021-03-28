@@ -8,9 +8,9 @@ pool:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 2.2.102'
+  displayName: 'Use .NET Core sdk 2.1'
   inputs:
-    version: 2.2.102
+    version: 2.1.*
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
