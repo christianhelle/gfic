@@ -4,47 +4,27 @@ on: [push]
 
 jobs:
 
-  ubuntu:
+  test:
 
-    name: Ubuntu Smoke Tests
-    runs-on: ubuntu-latest
+    name: Tests
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.os == 'macos-11.0' }}
+    strategy:
+      matrix:
+        os: [
+          ubuntu-latest,
+          windows-latest,
+          macos-latest
+        ]
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.1
-    - name: Run with dotnet
-      run: dotnet run --configuration Release -- --input ../../images/original/ --effect all --no-logging
-      working-directory: src/gfic
 
-  windows:
-
-    name: Windows Smoke Tests
-    runs-on: windows-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.1
-    - name: Run with dotnet
-      run: dotnet run --configuration Release -- --input ../../images/original/ --effect all --no-logging
-      working-directory: src/gfic
-
-  macos:
-
-    name: MacOS Smoke Tests
-    runs-on: macos-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.1
     - name: Run with dotnet
       run: dotnet run --configuration Release -- --input ../../images/original/ --effect all --no-logging
       working-directory: src/gfic
