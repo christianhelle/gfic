@@ -18,7 +18,12 @@
     <IsPackable>true</IsPackable>
     <PackAsTool>true</PackAsTool>
     <TieredCompilation>true</TieredCompilation>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="Options.fs" />
