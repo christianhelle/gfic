@@ -47,7 +47,7 @@ OPTIONS:
 ### Examples
 Here's an example of how an original image might look like
 
-![Before](https://github.com/christianhelle/gfic/blob/master/images/original/guitar1.jpg)
+![Before](https://github.com/christianhelle/gfic/raw/master/images/original/guitar1.jpg)
 
 #### Then after applying some effects
 
@@ -55,49 +55,49 @@ Here's an example of how an original image might look like
 gfic --input .\ --output .\output --effect grayscale
 ```
 
-![After](https://github.com/christianhelle/gfic/blob/master/images/grayscale/guitar1.jpg)
+![After](https://github.com/christianhelle/gfic/raw/master/images/grayscale/guitar1.jpg)
 
 
 ```
 gfic --input .\ --output .\output --effect lomograph
 ```
 
-![After](https://github.com/christianhelle/gfic/blob/master/images/lomograph/guitar1.jpg)
+![After](https://github.com/christianhelle/gfic/raw/master/images/lomograph/guitar1.jpg)
 
 
 ```
 gfic --input .\ --output .\output --effect oilpaint
 ```
 
-![After](https://github.com/christianhelle/gfic/blob/master/images/oilpaint/guitar1.jpg)
+![After](https://github.com/christianhelle/gfic/raw/master/images/oilpaint/guitar1.jpg)
 
 
 ```
 gfic --input .\ --output .\output --effect gaussiansharpen
 ```
 
-![After](https://github.com/christianhelle/gfic/blob/master/images/gaussiansharpen/guitar1.jpg)
+![After](https://github.com/christianhelle/gfic/raw/master/images/gaussiansharpen/guitar1.jpg)
 
 
 ```
 gfic --input .\ --output .\output --effect sepia
 ```
 
-![After](https://github.com/christianhelle/gfic/blob/master/images/sepia/guitar1.jpg)
+![After](https://github.com/christianhelle/gfic/raw/master/images/sepia/guitar1.jpg)
 
 
 ```
 gfic --input .\ --output .\output --effect vignette
 ```
 
-![After](https://github.com/christianhelle/gfic/blob/master/images/vignette/guitar1.jpg)
+![After](https://github.com/christianhelle/gfic/raw/master/images/vignette/guitar1.jpg)
 
 
 ```
 gfic --input .\ --output .\output --effect polaroid
 ```
 
-![After](https://github.com/christianhelle/gfic/blob/master/images/polaroid/guitar1.jpg)
+![After](https://github.com/christianhelle/gfic/raw/master/images/polaroid/guitar1.jpg)
 
 
 It's also possible to apply all supported effects by specifying **--effect all**
