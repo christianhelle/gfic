@@ -4,6 +4,7 @@
 [![Build Status](https://christianhelle.visualstudio.com/gfic/_apis/build/status/CI%20Build?branchName=master)](https://christianhelle.visualstudio.com/gfic/_build/latest?definitionId=20&branchName=master)
 [![NuGet](https://img.shields.io/nuget/dt/gfic.svg?style=flat-square)]( https://www.nuget.org/packages/gfic)
 [![NuGet](https://img.shields.io/nuget/v/gfic.svg?style=flat-square)]( https://www.nuget.org/packages/gfic)
+[![buymeacoffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/christianhelle)
 
 # gfic
 A .NET Core command line image processor that I started for no other reason than to learn F#. 
