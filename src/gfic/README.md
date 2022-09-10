@@ -168,6 +168,6 @@ d-----        5/19/2019   2:55 PM                vignette
 I will add a bunch of CLI arguments for batch image processing operations like: brigten, darken, and the ability to combine multiple images into a collage and apply effects to it
 
 #
-For tips and tricks on software development, check out [my blog](https://christian-helle.blogspot.com)
+For tips and tricks on software development, check out [my blog](https://christianhelle.github.io)
 
 If you find this useful and feel a bit generous then feel free to [buy me a coffee](https://www.buymeacoffee.com/christianhelle) :)
