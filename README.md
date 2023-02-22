@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.com/christianhelle/gfic.svg?branch=master)](https://travis-ci.com/christianhelle/gfic)
 [![Build status](https://ci.appveyor.com/api/projects/status/1pfk93w929w52dum/branch/master?svg=true)](https://ci.appveyor.com/project/christianhelle/gfic/branch/master)
 ![.NET Core](https://github.com/christianhelle/gfic/workflows/.NET%20Core/badge.svg?branch=master)
-[![Build Status](https://christianhelle.visualstudio.com/gfic/_apis/build/status/CI%20Build?branchName=master)](https://christianhelle.visualstudio.com/gfic/_build/latest?definitionId=20&branchName=master)
 [![NuGet](https://img.shields.io/nuget/dt/gfic.svg?style=flat-square)]( https://www.nuget.org/packages/gfic)
 [![NuGet](https://img.shields.io/nuget/v/gfic.svg?style=flat-square)]( https://www.nuget.org/packages/gfic)
 [![buymeacoffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/christianhelle)
