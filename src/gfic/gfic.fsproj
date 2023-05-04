@@ -38,7 +38,7 @@
 
   <ItemGroup>
     <PackageReference Include="Argu" Version="6.1.1" />
-    <PackageReference Include="Exceptionless" Version="4.8.0" />
+    <PackageReference Include="Exceptionless" Version="6.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.0.1" />
   </ItemGroup>
 
