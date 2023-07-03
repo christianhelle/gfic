@@ -13,7 +13,7 @@ let GetAnonymousIdentity =
     let sb = new StringBuilder()
     GetUserIdentity
     |> Encoding.UTF8.GetBytes
-    |> (new SHA256Managed()).ComputeHash
+    |> (SHA256.Create()).ComputeHash
     |> fun hash -> for b in hash do sb.Append(b.ToString("x2")) |> ignore
     sb.ToString()
 
