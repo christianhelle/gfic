@@ -24,4 +24,3 @@ let Setup() =
 
 let OptOut() =
     ExceptionlessClient.Default.Configuration.Enabled <- false
-    ExceptionlessClient.Default.Shutdown()
