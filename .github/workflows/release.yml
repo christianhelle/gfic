@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "release"
+
+env:
+  VERSION: 0.6.3
+  NUGET_REPO_URL: "https://api.nuget.org/v3/index.json"
+
+jobs:
+  publish:
+    name: 🚚 Prepare new release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Sets environment variables - branch-name
+        uses: nelonoel/branch-name@v1.0.1
+      - name: Sets environment variables - Nerdbank.GitVersioning
+        uses: dotnet/nbgv@master
+        with:
+          setAllVars: true
+      - name: Update Version
+        run: ((Get-Content -Path gfic.fsproj -Raw) -Replace "1.0.0", "${{ env.VERSION }}") | Set-Content -Path gfic.fsproj
+        working-directory: src/gfic
+        shell: pwsh
+      - name: Build
+        run: dotnet build -c Release /p:UseSourceLink=true src/gfic.sln -p:PackageVersion="${{ env.VERSION }}"
+      - name: Pack
+        run: dotnet pack --no-build -c Release /p:UseSourceLink=true src/gfic.sln -p:PackageVersion="${{ env.VERSION }}"
+      - name: Push packages to NuGet
+        run: dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_KEY }} -s ${{ env.NUGET_REPO_URL }} --no-symbols true
+        continue-on-error: true
+      - name: Publish artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: gfic
+          path: |
+            **/*.nupkg
+            README.md
+      - name: Create tag
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            github.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${{ env.VERSION }}",
+              sha: context.sha
+            })
