@@ -17,7 +17,7 @@ jobs:
         ]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Run with dotnet
       run: dotnet run --configuration Release -- --input ../../images/original/ --effect all --no-logging
