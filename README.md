@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.com/christianhelle/gfic.svg?branch=master)](https://travis-ci.com/christianhelle/gfic)
 [![Build status](https://ci.appveyor.com/api/projects/status/1pfk93w929w52dum/branch/master?svg=true)](https://ci.appveyor.com/project/christianhelle/gfic/branch/master)
 ![.NET Core](https://github.com/christianhelle/gfic/workflows/.NET%20Core/badge.svg?branch=master)
 [![NuGet](https://img.shields.io/nuget/dt/gfic.svg?style=flat-square)]( https://www.nuget.org/packages/gfic)
