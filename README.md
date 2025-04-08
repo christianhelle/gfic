@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.com/christianhelle/gfic.svg?branch=master)](https://travis-ci.com/christianhelle/gfic)
 [![Build status](https://ci.appveyor.com/api/projects/status/1pfk93w929w52dum/branch/master?svg=true)](https://ci.appveyor.com/project/christianhelle/gfic/branch/master)
 ![.NET Core](https://github.com/christianhelle/gfic/workflows/.NET%20Core/badge.svg?branch=master)
 [![NuGet](https://img.shields.io/nuget/dt/gfic.svg?style=flat-square)]( https://www.nuget.org/packages/gfic)
@@ -6,19 +5,21 @@
 [![buymeacoffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/christianhelle)
 
 # gfic
-A .NET Core command line image processor that I started for no other reason than to learn F#. 
+
+A .NET Core command line image processor that I started for no other reason than to learn F#.
 
 The tool will scan the specified input folder for image files, resize the image by percentage if specified, apply the specified effect, and then save them to the specified output folder. The tool has multi-threading support where you can specify the maximum degree of parallelism but will by default only run on a single thread
 
 #### Supported effects
+
 - grayscale
 - blackwhite
 - lomograph
 - kodachrome
 - oilpaint
-- box blur 
-- gaussian blur 
-- gaussian sharpen 
+- box blur
+- gaussian blur
+- gaussian sharpen
 - glow
 - invert
 - pixelate
@@ -27,13 +28,17 @@ The tool will scan the specified input folder for image files, resize the image 
 - vignette
 
 ### Installation
+
 The tool can be installed as a .NET Core global tool that you can call from the shell / command line
+
 ```
 dotnet tool install --global gfic
 ```
+
 or by following the instructions [here](https://www.nuget.org/packages/gfic) to install a specific version of tool
 
 ### Usage
+
 ```
 USAGE: gfic [--help] [--effect <name>] [--format <format>] [--input <path>] [--output <path>] [--threads <number>] [--resize <percentage>]
 
@@ -52,6 +57,7 @@ OPTIONS:
 ```
 
 ### Examples
+
 Here's an example of how an original image might look like
 
 ![Before](https://github.com/christianhelle/gfic/raw/master/images/original/guitar1.jpg)
@@ -64,13 +70,11 @@ gfic --input .\ --output .\output --effect grayscale
 
 ![After](https://github.com/christianhelle/gfic/raw/master/images/grayscale/guitar1.jpg)
 
-
 ```
 gfic --input .\ --output .\output --effect lomograph
 ```
 
 ![After](https://github.com/christianhelle/gfic/raw/master/images/lomograph/guitar1.jpg)
-
 
 ```
 gfic --input .\ --output .\output --effect oilpaint
@@ -78,13 +82,11 @@ gfic --input .\ --output .\output --effect oilpaint
 
 ![After](https://github.com/christianhelle/gfic/raw/master/images/oilpaint/guitar1.jpg)
 
-
 ```
 gfic --input .\ --output .\output --effect gaussiansharpen
 ```
 
 ![After](https://github.com/christianhelle/gfic/raw/master/images/gaussiansharpen/guitar1.jpg)
-
 
 ```
 gfic --input .\ --output .\output --effect sepia
@@ -92,20 +94,17 @@ gfic --input .\ --output .\output --effect sepia
 
 ![After](https://github.com/christianhelle/gfic/raw/master/images/sepia/guitar1.jpg)
 
-
 ```
 gfic --input .\ --output .\output --effect vignette
 ```
 
 ![After](https://github.com/christianhelle/gfic/raw/master/images/vignette/guitar1.jpg)
 
-
 ```
 gfic --input .\ --output .\output --effect polaroid
 ```
 
 ![After](https://github.com/christianhelle/gfic/raw/master/images/polaroid/guitar1.jpg)
-
 
 It's also possible to apply all supported effects by specifying **--effect all**
 
@@ -170,11 +169,12 @@ d-----        5/19/2019   2:55 PM                sepia
 d-----        5/19/2019   2:55 PM                vignette
 ```
 
-
 ### Future
+
 I will add a bunch of CLI arguments for batch image processing operations like: brigten, darken, and the ability to combine multiple images into a collage and apply effects to it
 
 #
+
 For tips and tricks on software development, check out [my blog](https://christianhelle.com)
 
 If you find this useful and feel a bit generous then feel free to [buy me a coffee](https://www.buymeacoffee.com/christianhelle) :)
