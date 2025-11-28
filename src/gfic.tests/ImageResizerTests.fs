@@ -7,7 +7,7 @@ open SixLabors.ImageSharp
 
 [<Fact>]
 let ``Can Resize`` () = 
-    EmbeddedResource.ExtractAll
+    EmbeddedResource.ExtractAll()
     for name in ["guitar1.jpg";"guitar2.jpg"] do
         Path.Combine(Directory.GetCurrentDirectory(), name)
         |> Image.Load

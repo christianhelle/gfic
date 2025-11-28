@@ -29,7 +29,7 @@ with
             | Output _ -> "Specify the output folder."
             | Threads _ -> "Specify the maximum degree of parallelism. Default is 1"
             | Resize _ -> "Resize the image by percentage"
-            | No_Logging _ -> "Disable remote logging and crash reporting"
+            | No_Logging -> "Disable remote logging and crash reporting"
 
 let Validate = function
     | { InputDir = "" } -> "ERROR: missing parameter '--input'." |> Error
