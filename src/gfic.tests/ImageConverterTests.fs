@@ -13,7 +13,8 @@ let SaveTo format =
         |> fun img ->
             let newName = "new-"+name
             ImageConverter.Save(newName, img, "./output", format)
-            let path = Path.Combine(Directory.GetCurrentDirectory(), "output", newName)
+            let convertedName = Path.ChangeExtension(newName, format.ToLowerInvariant())
+            let path = Path.Combine(Directory.GetCurrentDirectory(), "output", convertedName)
             File.Exists(path) |> Assert.True
 
 [<Fact>]
