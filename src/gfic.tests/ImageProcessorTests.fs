@@ -8,7 +8,7 @@ open Options
 open ImageProcessor
 
 let ArrangeAndAct (effect:MutateEffect) =
-    EmbeddedResource.ExtractAll
+    EmbeddedResource.ExtractAll()
     for name in ["guitar1.jpg";"guitar2.jpg"] do
         Path.Combine(Directory.GetCurrentDirectory(), name)
         |> fun file ->

@@ -6,14 +6,15 @@ open System.IO
 open SixLabors.ImageSharp
 
 let SaveTo format =
-    EmbeddedResource.ExtractAll
+    EmbeddedResource.ExtractAll()
     for name in ["guitar1.jpg";"guitar2.jpg"] do
         Path.Combine(Directory.GetCurrentDirectory(), name)
         |> Image.Load
         |> fun img ->
             let newName = "new-"+name
             ImageConverter.Save(newName, img, "./output", format)
-            let path = Path.Combine(Directory.GetCurrentDirectory(), "output", newName)
+            let convertedName = Path.ChangeExtension(newName, format.ToLowerInvariant())
+            let path = Path.Combine(Directory.GetCurrentDirectory(), "output", convertedName)
             File.Exists(path) |> Assert.True
 
 [<Fact>]

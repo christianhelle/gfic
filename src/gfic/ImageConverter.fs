@@ -12,9 +12,10 @@ let GetOutputFile (input, output) =
 let Save (file:string, image:Image, outputDir:string, format:string) =
     let ext = FileInfo(file).Extension
     let outputFile = GetOutputFile(file, outputDir)
+    let lowerFormat = format.ToLowerInvariant()
     let Save (encoder:IImageEncoder) =
-        image.Save(outputFile.Replace(ext, "." + format), encoder)
-    match format with
+        image.Save(outputFile.Replace(ext, "." + lowerFormat), encoder)
+    match lowerFormat with
     | "jpg" -> Save(Formats.Jpeg.JpegEncoder())
     | "png" -> Save(Formats.Png.PngEncoder())
     | "bmp" -> Save(Formats.Bmp.BmpEncoder())

@@ -25,7 +25,7 @@ type MutateEffect =
     | Pixelate = 11
     | Polaroid = 12
     | Sepia = 13
-    | Vignette =14
+    | Vignette = 14
     | All = 15
 
 let Process (file:string, outputDir:string, effect:MutateEffect, percentage:int, format:string) =
