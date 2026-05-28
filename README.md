@@ -6,7 +6,7 @@
 
 # gfic
 
-A .NET Core command line image processor that I started for no other reason than to learn F#.
+A .NET command line image processor that I started for no other reason than to learn F#. Gfic is short for "Gb" Image Converter. For those without music knowledge F sharp is the same note as G flat
 
 The tool will scan the specified input folder for image files, resize the image by percentage if specified, apply the specified effect, and then save them to the specified output folder. The tool has multi-threading support where you can specify the maximum degree of parallelism but will by default only run on a single thread
 
